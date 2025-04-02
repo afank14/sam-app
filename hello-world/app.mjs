@@ -12,28 +12,29 @@
  */
 
 export const lambdaHandler = async (event, context) => {
-  try {
-    return {
-      statusCode: 200,
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: "I'm using canary deployments!",
-      }),
-    };
-  } catch (err) {
-    console.error("Lambda execution error:", err);
+  throw new Error("This will cause a deployment rollback")
+  // try {
+  //   return {
+  //     statusCode: 200,
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       message: "I'm using canary deployments!",
+  //     }),
+  //   };
+  // } catch (err) {
+  //   console.error("Lambda execution error:", err);
 
-    return {
-      statusCode: 500,
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: "Internal server error",
-      }),
-    };
-  }
+  //   return {
+  //     statusCode: 500,
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       message: "Internal server error",
+  //     }),
+  //   };
+  // }
 };
   
