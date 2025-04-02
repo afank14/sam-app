@@ -19,7 +19,7 @@ export const lambdaHandler = async (event, context) => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        message: "hello my friend",
+        message: "I'm using canary deployments!",
       }),
     };
   } catch (err) {
