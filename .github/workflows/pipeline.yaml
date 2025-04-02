@@ -35,16 +35,22 @@ permissions:
   contents: read
 jobs:
   test:
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: |
-          # trigger the tests here
-	  echo 'Running unit test'
-	  cd hello-world
-	  npm install
-	  npm run test
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies and run tests
+        run: |
+          echo 'Running unit tests'
+          cd hello-world
+          npm install
+          npm run test
 
   delete-feature:
     if: startsWith(github.event.ref, 'feature') && github.event_name == 'delete'
