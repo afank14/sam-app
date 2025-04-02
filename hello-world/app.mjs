@@ -11,30 +11,33 @@
  * 
  */
 
-export const lambdaHandler = async (event, context) => {
-  throw new Error("This will cause a deployment rollback")
-  // try {
-  //   return {
-  //     statusCode: 200,
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       message: "I'm using canary deployments!",
-  //     }),
-  //   };
-  // } catch (err) {
-  //   console.error("Lambda execution error:", err);
 
-  //   return {
-  //     statusCode: 500,
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       message: "Internal server error",
-  //     }),
-  //   };
-  // }
+// Alex Fankhauser
+
+export const lambdaHandler = async (event, context) => {
+  console.log("Change deployed with SAM Accelerate")
+  try {
+    return {
+      statusCode: 200,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: "I'm using canary deployments!",
+      }),
+    };
+  } catch (err) {
+    console.error("Lambda execution error:", err);
+
+    return {
+      statusCode: 500,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: "Internal server error",
+      }),
+    };
+  }
 };
   
